@@ -25,7 +25,6 @@ function IncomeForm({
       <div className="text-black w-full">
         <h2 className="text-xl font-bold mb-4 text-center">Add Balance</h2>
 
-        {/* Wrap everything inside a form */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="number"
@@ -41,13 +40,13 @@ function IncomeForm({
 
           <div className="flex justify-between gap-4 mt-4">
             <button
-              type="submit" // Now this will properly trigger form submission
+              type="submit"
               className="bg-yellow-400 text-white px-4 py-2 rounded-md shadow w-full"
             >
               Add Balance
             </button>
             <button
-              type="button" // Prevents form submission when clicking Cancel
+              type="button"
               onClick={() => setShowIncomeForm(false)}
               className="bg-gray-200 text-black px-4 py-2 rounded-md shadow w-full"
             >
