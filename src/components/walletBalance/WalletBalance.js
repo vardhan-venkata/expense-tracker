@@ -7,7 +7,7 @@ function WalletBalance({ balance, onAddExpense }) {
         Wallet Balance:{" "}
         <span className=" text-green-400">
           {" "}
-          $ {parseFloat(balance).toFixed(2)}
+          $ {parseFloat(balance).toFixed(2) || 0.00}
         </span>
       </p>
       <button

@@ -14,7 +14,7 @@ function getCategoryIcon(category) {
   }
 }
 
-function ExpenseList({ expenseList, handleExpenseForm, deleteExpense }) {
+function ExpenseList({ expenseList, handleExpenseForm, handleDeleteExpense }) {
   return (
     <div className="bg-white p-4 rounded-lg shadow-md w-full">
       {expenseList && expenseList.length > 0 ? (
@@ -37,7 +37,7 @@ function ExpenseList({ expenseList, handleExpenseForm, deleteExpense }) {
                 </span>
                 <button
                   className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow"
-                  onClick={() => deleteExpense(index)}
+                  onClick={() => handleDeleteExpense(index)}
                 >
                   <FaTrashAlt />
                 </button>

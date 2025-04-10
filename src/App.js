@@ -14,7 +14,7 @@ function App() {
   const [showExpenseForm, setShowExpenseForm] = useState(false);
   const [showIncomeForm, setShowIncomeForm] = useState(false);
   const [expenseList, setExpenseList] = useState([]);
-  const [expenseFormType, setExpenseFormType] = useState("add");
+  const [expenseFormType, setExpenseFormType] = useState("Add");
   const [expenseFormData, setExpenseFormData] = useState({
     title: "",
     price: "",
@@ -22,7 +22,7 @@ function App() {
     date: "",
   });
 
-  const handleExpenseForm = (action = "add", expense) => {
+  const handleExpenseForm = (action = "Add", expense) => {
     console.log("action", action, expense);
     setShowExpenseForm(true);
     setExpenseFormType(action);
@@ -32,7 +32,7 @@ function App() {
   };
 
   const closeExpenseForm = () => {
-    setExpenseFormType("add");
+    setExpenseFormType("Add");
     setExpenseFormData({ title: "", price: "", category: "", date: "" });
     setShowExpenseForm(false);
   };
@@ -50,6 +50,7 @@ function App() {
 
   const handleExpenseSubmit = (expense) => {
     const parsedPrice = parseInt(expense.price);
+    console.log("parsePrice", parsedPrice);
 
     // For editing, subtract old price and add new one to update balance and expense total correctly
     if (expenseFormType === "Edit") {
@@ -102,6 +103,25 @@ function App() {
     localStorage.setItem("expenseList", JSON.stringify(updatedList));
     setShowExpenseForm(false);
   };
+  const handleDeleteExpense = (indexToDelete) => {
+    const deletedExpense = expenseList[indexToDelete];
+    const updatedList = expenseList.filter(
+      (_, index) => index !== indexToDelete
+    );
+
+    // Update balance and expenses
+    const updatedBalance = parseInt(balance) + parseInt(deletedExpense.price);
+    const updatedExpenses = parseInt(expenses) - parseInt(deletedExpense.price);
+
+    setBalance(updatedBalance);
+    setExpenses(updatedExpenses);
+    setExpenseList(updatedList);
+
+    // Update localStorage
+    localStorage.setItem("balance", updatedBalance);
+    localStorage.setItem("expenses", updatedExpenses);
+    localStorage.setItem("expenseList", JSON.stringify(updatedList));
+  };
 
   useEffect(() => {
     if (localStorage.getItem("balance")) {
@@ -111,6 +131,7 @@ function App() {
     }
     if (localStorage.getItem("expenses")) {
       setExpenses(localStorage.getItem("expenses"));
+      console.log(localStorage.getItem("expenses"));
     } else {
       localStorage.setItem("expenses", 0);
     }
@@ -141,6 +162,7 @@ function App() {
           <ExpenseList
             expenseList={expenseList}
             handleExpenseForm={handleExpenseForm}
+            handleDeleteExpense={handleDeleteExpense}
           />
         </div>
 
