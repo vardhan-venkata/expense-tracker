@@ -15,6 +15,11 @@ function ExpenseForm({
     setExpenseFormData((prev) => ({ ...prev, [key]: value }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleExpenseSubmit(expenseFormData);
+  };
+
   return (
     <ReactModal
       isOpen={showExpenseForm}
@@ -26,7 +31,7 @@ function ExpenseForm({
       <div className="text-black w-full">
         <h2 className="text-xl font-bold mb-4 text-center">{type} Expense</h2>
 
-        <div className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="text"
             name="title"
@@ -72,7 +77,6 @@ function ExpenseForm({
           <div className="flex justify-between gap-4 mt-4">
             <button
               type="submit"
-              onClick={() => handleExpenseSubmit(expenseFormData)}
               className="bg-yellow-400 text-white px-4 py-2 rounded-md shadow w-full"
             >
               {type} Expense
@@ -84,7 +88,7 @@ function ExpenseForm({
               Cancel
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </ReactModal>
   );

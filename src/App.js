@@ -7,6 +7,7 @@ import ExpenseForm from "./components/expenses/ExpenseForm";
 import ExpenseList from "./components/expenses/ExpenseList";
 import ExpensePieChart from "./components/expenses/ExpensePieChart";
 import TopExpensesBarChart from "./components/expenses/TopExpensesBarChart";
+import IncomeForm from "./components/IncomeForm";
 
 function App() {
   const [balance, setBalance] = useState(0);
@@ -174,48 +175,11 @@ function App() {
         </div>
       </div>
 
-      <ReactModal
-        isOpen={showIncomeForm}
-        onRequestClose={() => setShowIncomeForm(false)}
-        className="bg-white bg-opacity-80 backdrop-blur-md p-6 rounded-xl shadow-xl w-[500px] mx-auto outline-none"
-        overlayClassName="fixed inset-0 bg-gray-200 bg-opacity-40 backdrop-blur-sm flex justify-center items-center z-50"
-      >
-        <div className="text-black w-full">
-          <h2 className="text-xl font-bold mb-4 text-center">Add Balance</h2>
-          <div className="flex flex-col gap-4">
-            <input
-              type="number"
-              placeholder="Income Amount"
-              className="border border-gray-300 rounded-md px-4 py-2 shadow-sm"
-              onChange={(e) => {
-                const val = parseInt(e.target.value);
-                if (!isNaN(val)) {
-                  localStorage.setItem("incomeValue", val);
-                }
-              }}
-            />
-            <div className="flex justify-between gap-4">
-              <button
-                type="submit"
-                onClick={() => {
-                  const val = parseInt(localStorage.getItem("incomeValue"));
-                  if (!isNaN(val)) handleIncomeFormSubmit(val);
-                }}
-                className="bg-yellow-400 text-white px-4 py-2 rounded-md shadow w-full"
-              >
-                Add Balance
-              </button>
-              <button
-                onClick={() => setShowIncomeForm(false)}
-                className="bg-gray-200 text-black px-4 py-2 rounded-md shadow w-full"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      </ReactModal>
-
+      <IncomeForm
+        showIncomeForm={showIncomeForm}
+        setShowIncomeForm={setShowIncomeForm}
+        handleIncomeFormSubmit={handleIncomeFormSubmit}
+      />
       <ExpenseForm
         type={expenseFormType}
         showExpenseForm={showExpenseForm}
