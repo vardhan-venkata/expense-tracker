@@ -1,0 +1,98 @@
+/*! tailwindcss v4.1.3 | MIT License | https://tailwindcss.com */
+@layer properties;
+.fixed {
+  position: fixed;
+}
+.z-50 {
+  z-index: 50;
+}
+.mx-auto {
+  margin-inline: auto;
+}
+.flex {
+  display: flex;
+}
+.h-\[200px\] {
+  height: 200px;
+}
+.min-h-screen {
+  min-height: 100vh;
+}
+.w-\[500px\] {
+  width: 500px;
+}
+.w-full {
+  width: 100%;
+}
+.min-w-\[250px\] {
+  min-width: 250px;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.items-center {
+  align-items: center;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-center {
+  justify-content: center;
+}
+.divide-y {
+  :where(& > :not(:last-child)) {
+    --tw-divide-y-reverse: 0;
+    border-bottom-style: var(--tw-border-style);
+    border-top-style: var(--tw-border-style);
+    border-top-width: calc(1px * var(--tw-divide-y-reverse));
+    border-bottom-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+  }
+}
+.rounded-full {
+  border-radius: calc(infinity * 1px);
+}
+.border {
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+}
+.text-center {
+  text-align: center;
+}
+.outline-none {
+  --tw-outline-style: none;
+  outline-style: none;
+}
+.hover\:cursor-pointer {
+  &:hover {
+    @media (hover: hover) {
+      cursor: pointer;
+    }
+  }
+}
+@property --tw-divide-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-divide-y-reverse: 0;
+      --tw-border-style: solid;
+    }
+  }
+}
