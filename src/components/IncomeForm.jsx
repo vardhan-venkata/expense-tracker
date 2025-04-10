@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactModal from "react-modal";
 
 function IncomeForm({
@@ -6,12 +6,10 @@ function IncomeForm({
   setShowIncomeForm,
   handleIncomeFormSubmit,
 }) {
+  const [income, setIncome] = useState();
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents the page from reloading on form submission
-    const incomeValue = parseInt(localStorage.getItem("incomeValue"));
-    if (!isNaN(incomeValue)) {
-      handleIncomeFormSubmit(incomeValue);
-    }
+    e.preventDefault();
+    handleIncomeFormSubmit(income);
   };
 
   return (
@@ -31,10 +29,8 @@ function IncomeForm({
             placeholder="Income Amount"
             className="border border-gray-300 rounded-md px-4 py-2 shadow-sm"
             onChange={(e) => {
-              const val = parseInt(e.target.value);
-              if (!isNaN(val)) {
-                localStorage.setItem("incomeValue", val);
-              }
+              const val = parseFloat(e.target.value);
+              setIncome(val);
             }}
           />
 
